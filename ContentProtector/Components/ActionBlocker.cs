@@ -41,7 +41,7 @@ namespace ContentProtector.App_Plugins.ContentProtector.Components {
             int _currentUserId;
 
             using(var contextReference = _context.EnsureUmbracoContext()) {
-                _currentUserId = contextReference.UmbracoContext.Security.CurrentUser.Id;
+                _currentUserId = contextReference.UmbracoContext.Security.IsAuthenticated() ? contextReference.UmbracoContext.Security.CurrentUser.Id : -1;
             }
 
             try {
@@ -72,7 +72,7 @@ namespace ContentProtector.App_Plugins.ContentProtector.Components {
             int _currentUserId;
 
             using(var contextReference = _context.EnsureUmbracoContext()) {
-                _currentUserId = contextReference.UmbracoContext.Security.CurrentUser.Id;
+                _currentUserId = contextReference.UmbracoContext.Security.IsAuthenticated() ? contextReference.UmbracoContext.Security.CurrentUser.Id : -1;
             }
 
             try {
@@ -103,7 +103,7 @@ namespace ContentProtector.App_Plugins.ContentProtector.Components {
             int _currentUserId;
 
             using(var contextReference = _context.EnsureUmbracoContext()) {
-                _currentUserId = contextReference.UmbracoContext.Security.CurrentUser.Id;
+                _currentUserId = contextReference.UmbracoContext.Security.IsAuthenticated() ? contextReference.UmbracoContext.Security.CurrentUser.Id : -1;
             }
 
             try {
@@ -132,7 +132,7 @@ namespace ContentProtector.App_Plugins.ContentProtector.Components {
             int _currentUserId;
 
             using(var contextReference = _context.EnsureUmbracoContext()) {
-                _currentUserId = contextReference.UmbracoContext.Security.CurrentUser.Id;
+                _currentUserId = contextReference.UmbracoContext.Security.IsAuthenticated() ? contextReference.UmbracoContext.Security.CurrentUser.Id : -1;
             }
 
             try {
@@ -163,7 +163,7 @@ namespace ContentProtector.App_Plugins.ContentProtector.Components {
             int _currentUserId;
 
             using(var contextReference = _context.EnsureUmbracoContext()) {
-                _currentUserId = contextReference.UmbracoContext.Security.CurrentUser.Id;
+                _currentUserId = contextReference.UmbracoContext.Security.IsAuthenticated() ? contextReference.UmbracoContext.Security.CurrentUser.Id : -1;
             }
 
             try {
@@ -194,7 +194,7 @@ namespace ContentProtector.App_Plugins.ContentProtector.Components {
         //    int _currentUserId;
 
         //    using(var contextReference = _context.EnsureUmbracoContext()) {
-        //        _currentUserId = contextReference.UmbracoContext.Security.CurrentUser.Id;
+        //        _currentUserId = contextReference.UmbracoContext.Security.IsAuthenticated() ? contextReference.UmbracoContext.Security.CurrentUser.Id : -1;
         //    }
 
         //    try {
@@ -226,7 +226,7 @@ namespace ContentProtector.App_Plugins.ContentProtector.Components {
         //    int _currentUserId;
 
         //    using(var contextReference = _context.EnsureUmbracoContext()) {
-        //        _currentUserId = contextReference.UmbracoContext.Security.CurrentUser.Id;
+        //        _currentUserId = contextReference.UmbracoContext.Security.IsAuthenticated() ? contextReference.UmbracoContext.Security.CurrentUser.Id : -1;
         //    }
 
         //    try {
@@ -257,7 +257,7 @@ namespace ContentProtector.App_Plugins.ContentProtector.Components {
             int _currentUserId;
 
             using(var contextReference = _context.EnsureUmbracoContext()) {
-                _currentUserId = contextReference.UmbracoContext.Security.CurrentUser.Id;
+                _currentUserId = contextReference.UmbracoContext.Security.IsAuthenticated() ? contextReference.UmbracoContext.Security.CurrentUser.Id : -1;
             }
 
             try {
