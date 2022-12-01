@@ -41,7 +41,7 @@ namespace ContentProtector.App_Plugins.ContentProtector.Components {
             int _currentUserId;
 
             using(var contextReference = _context.EnsureUmbracoContext()) {
-                _currentUserId = contextReference.UmbracoContext.Security.CurrentUser.Id;
+                _currentUserId = contextReference.UmbracoContext.Security.IsAuthenticated() ? contextReference.UmbracoContext.Security.CurrentUser.Id : Umbraco.Core.Constants.Security.SuperUserId;
             }
 
             try {
@@ -57,9 +57,9 @@ namespace ContentProtector.App_Plugins.ContentProtector.Components {
             }
 
             foreach(var node in eventArgs.MoveInfoCollection) {
-                if(trash != null) {                    
+                if(trash != null) {
                     if(trash.nodes.Contains(node.Entity.Id.ToString()) || trash.disableAction) {
-                        if(!trash.userExceptions.Split(',').Contains(_currentUserId.ToString())) {                            
+                        if(!trash.userExceptions.Split(',').Contains(_currentUserId.ToString())) {
                             eventArgs.CancelOperation(new EventMessage("Action rejected. Contact website admin","You cannot trash " + node.Entity.Name,EventMessageType.Error));
                         }
                     }
@@ -72,7 +72,7 @@ namespace ContentProtector.App_Plugins.ContentProtector.Components {
             int _currentUserId;
 
             using(var contextReference = _context.EnsureUmbracoContext()) {
-                _currentUserId = contextReference.UmbracoContext.Security.CurrentUser.Id;
+                _currentUserId = contextReference.UmbracoContext.Security.IsAuthenticated() ? contextReference.UmbracoContext.Security.CurrentUser.Id : Umbraco.Core.Constants.Security.SuperUserId;
             }
 
             try {
@@ -103,7 +103,7 @@ namespace ContentProtector.App_Plugins.ContentProtector.Components {
             int _currentUserId;
 
             using(var contextReference = _context.EnsureUmbracoContext()) {
-                _currentUserId = contextReference.UmbracoContext.Security.CurrentUser.Id;
+                _currentUserId = contextReference.UmbracoContext.Security.IsAuthenticated() ? contextReference.UmbracoContext.Security.CurrentUser.Id : Umbraco.Core.Constants.Security.SuperUserId;
             }
 
             try {
@@ -117,14 +117,14 @@ namespace ContentProtector.App_Plugins.ContentProtector.Components {
             catch(Exception ex) {
                 _logger.Error<ActionModel>("Failed to get Content Protector setting for rollBack action: " + ex.Message);
             }
-            
+
             if(rollBack != null) {
                 if(rollBack.nodes.Contains(eventArgs.Entity.Id.ToString()) || rollBack.disableAction) {
                     if(!rollBack.userExceptions.Split(',').Contains(_currentUserId.ToString())) {
-                        eventArgs.CancelOperation(new EventMessage("Action rejected. Contact website admin","You cannot rollBack " + eventArgs.Entity.Name,EventMessageType.Error));                        
+                        eventArgs.CancelOperation(new EventMessage("Action rejected. Contact website admin","You cannot rollBack " + eventArgs.Entity.Name,EventMessageType.Error));
                     }
                 }
-            }            
+            }
         }
 
         private void ContentService_Unpublishing(IContentService sender,PublishEventArgs<IContent> eventArgs) {
@@ -132,7 +132,7 @@ namespace ContentProtector.App_Plugins.ContentProtector.Components {
             int _currentUserId;
 
             using(var contextReference = _context.EnsureUmbracoContext()) {
-                _currentUserId = contextReference.UmbracoContext.Security.CurrentUser.Id;
+                _currentUserId = contextReference.UmbracoContext.Security.IsAuthenticated() ? contextReference.UmbracoContext.Security.CurrentUser.Id : Umbraco.Core.Constants.Security.SuperUserId;
             }
 
             try {
@@ -163,7 +163,7 @@ namespace ContentProtector.App_Plugins.ContentProtector.Components {
             int _currentUserId;
 
             using(var contextReference = _context.EnsureUmbracoContext()) {
-                _currentUserId = contextReference.UmbracoContext.Security.CurrentUser.Id;
+                _currentUserId = contextReference.UmbracoContext.Security.IsAuthenticated() ? contextReference.UmbracoContext.Security.CurrentUser.Id : Umbraco.Core.Constants.Security.SuperUserId;
             }
 
             try {
@@ -194,7 +194,7 @@ namespace ContentProtector.App_Plugins.ContentProtector.Components {
         //    int _currentUserId;
 
         //    using(var contextReference = _context.EnsureUmbracoContext()) {
-        //        _currentUserId = contextReference.UmbracoContext.Security.CurrentUser.Id;
+        //        _currentUserId = contextReference.UmbracoContext.Security.IsAuthenticated() ? contextReference.UmbracoContext.Security.CurrentUser.Id : Umbraco.Core.Constants.Security.SuperUserId;
         //    }
 
         //    try {
@@ -208,17 +208,17 @@ namespace ContentProtector.App_Plugins.ContentProtector.Components {
         //    catch(Exception ex) {
         //        _logger.Error<ActionModel>("Failed to get Content Protector setting for copy action: " + ex.Message);
         //    }
-            
+
         //    if(copy != null) {
         //        if(copy.nodes.Contains(eventArgs.Copy.Id.ToString())) {
-        //            if(!copy.userExceptions.Split(',').Contains(_currentUserId.ToString())) {                                        
+        //            if(!copy.userExceptions.Split(',').Contains(_currentUserId.ToString())) {
         //                eventArgs.Cancel = true;
         //                eventArgs.CanCancel = true;
         //                eventArgs.Messages.Add(new EventMessage("Action rejected. Contact website admin","You cannot copy " + eventArgs.Copy.Name,EventMessageType.Error));
         //            }
         //        }
         //    }
-            
+
         //}
 
         //private void ContentService_Moving(IContentService sender,MoveEventArgs<IContent> eventArgs) {
@@ -226,7 +226,7 @@ namespace ContentProtector.App_Plugins.ContentProtector.Components {
         //    int _currentUserId;
 
         //    using(var contextReference = _context.EnsureUmbracoContext()) {
-        //        _currentUserId = contextReference.UmbracoContext.Security.CurrentUser.Id;
+        //        _currentUserId = contextReference.UmbracoContext.Security.IsAuthenticated() ? contextReference.UmbracoContext.Security.CurrentUser.Id : Umbraco.Core.Constants.Security.SuperUserId;
         //    }
 
         //    try {
@@ -257,7 +257,7 @@ namespace ContentProtector.App_Plugins.ContentProtector.Components {
             int _currentUserId;
 
             using(var contextReference = _context.EnsureUmbracoContext()) {
-                _currentUserId = contextReference.UmbracoContext.Security.CurrentUser.Id;
+                _currentUserId = contextReference.UmbracoContext.Security.IsAuthenticated() ? contextReference.UmbracoContext.Security.CurrentUser.Id : Umbraco.Core.Constants.Security.SuperUserId;
             }
 
             try {
@@ -280,8 +280,8 @@ namespace ContentProtector.App_Plugins.ContentProtector.Components {
                         }
                     }
                 }
-            }            
-        }       
+            }
+        }
 
         public void Terminate() {
         }
