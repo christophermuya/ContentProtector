@@ -12,7 +12,8 @@ namespace ContentProtector.Core.Composers
 		{
 			builder.Components().Append<InitializeMigrationPlan>();
 
-			builder.AddNotificationHandler<ContentDeletingNotification, DeletingNotificationHandler>();
+			builder.AddNotificationHandler<ContentMovingToRecycleBinNotification, DeletingNotificationHandler>();
+			builder.AddNotificationHandler<ContentEmptyingRecycleBinNotification, EmptyingRecycleBinNotificationHandler>();
 			builder.AddNotificationHandler<ContentPublishingNotification, PublishingNotificationHandler>();
 			builder.AddNotificationHandler<ContentRollingBackNotification, RollingBackNotificationHandler>();
 			builder.AddNotificationHandler<ContentSavingNotification, SavingNotificationHandler>();

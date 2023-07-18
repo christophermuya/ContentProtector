@@ -9,7 +9,7 @@ using Umbraco.Extensions;
 
 namespace ContentProtector.Core.NotificationHandlers
 {
-	public class DeletingNotificationHandler : BaseNotificationHandler, INotificationHandler<ContentDeletingNotification>
+	public class DeletingNotificationHandler : BaseNotificationHandler, INotificationHandler<ContentMovingToRecycleBinNotification>
 	{
 		private readonly ILogger<DeletingNotificationHandler> _logger;
 		private readonly IScopeProvider _scopeProvider;
@@ -20,7 +20,7 @@ namespace ContentProtector.Core.NotificationHandlers
 			_scopeProvider = scopeProvider;
 		}
 
-		public void Handle(ContentDeletingNotification notification)
+		public void Handle(ContentMovingToRecycleBinNotification notification)
 		{
 			ActionModel? delete = null;
 			var currentUserId = GetCurrentUserId();
@@ -47,21 +47,21 @@ namespace ContentProtector.Core.NotificationHandlers
 				notification.CancelOperation(new EventMessage("Contact website admin", "Failed to get Content Protector setting for delete action", EventMessageType.Error));
 			}
 
-			foreach (var node in notification.DeletedEntities)
+			foreach (var node in notification.MoveInfoCollection)
 			{
 				if (delete == null)
 				{
 					continue;
 				}
 
-				if (!delete.Nodes.Split(',').Contains(node.Id.ToString()) && !delete.DisableAction)
+				if (!delete.Nodes.Split(',').Contains(node.Entity.Id.ToString()) && !delete.DisableAction)
 				{
 					continue;
 				}
 
 				if (!delete.UserExceptions.Split(',').Contains(currentUserId.ToString()))
 				{
-					notification.CancelOperation(new EventMessage("Action rejected. Contact website admin", $"You cannot delete '{node.Name}'", EventMessageType.Error));
+					notification.CancelOperation(new EventMessage("Action rejected. Contact website admin", $"You cannot delete '{node.Entity.Name}'", EventMessageType.Error));
 				}
 			}
 		}

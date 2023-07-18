@@ -90,7 +90,7 @@ angular.module("umbraco").controller("cp.edit.controller", function (navigationS
 			editorService.treePicker(contentPicker);
 		};
 	}).then(function () {
-		if (model.id === undefined || ($routeParams.id < 1 || $routeParams.id > 8)) {
+		if (model.id === undefined || ($routeParams.id < 1 || $routeParams.id > 9)) {
 			vm.showView = true;
 			vm.failToRetrieve = true;
 		}
