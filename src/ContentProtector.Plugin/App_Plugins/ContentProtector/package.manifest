@@ -1,0 +1,13 @@
+﻿{
+	"css": [
+		"~/App_Plugins/ContentProtector/Css/main.css"
+	],
+
+	"javascript": [
+		"~/App_Plugins/ContentProtector/JsControllers/content.controller.js",
+		"~/App_Plugins/ContentProtector/JsControllers/edit.controller.js",
+		"~/App_Plugins/ContentProtector/JsControllers/info.controller.js",
+		"~/App_Plugins/ContentProtector/JsControllers/protection.controller.js",
+		"~/App_Plugins/ContentProtector/Resources/cpResource.js"
+	]
+}

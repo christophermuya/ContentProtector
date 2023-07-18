@@ -1,0 +1,9 @@
+{
+  "name": "Plugin to Website Sync",
+  "version": "1.0.0",
+  "description": "Copies files from the 'YouProject.Plugin/App_Plugins/' project to the 'YouProject.Website/App_Plugins/' project",
+  "main": "gulp.js",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}
