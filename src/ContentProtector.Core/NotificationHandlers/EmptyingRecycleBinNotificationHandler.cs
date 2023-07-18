@@ -11,10 +11,10 @@ namespace ContentProtector.Core.NotificationHandlers
 {
 	public class EmptyingRecycleBinNotificationHandler : BaseNotificationHandler, INotificationHandler<ContentEmptyingRecycleBinNotification>
 	{
-		private readonly ILogger<DeletingNotificationHandler> _logger;
+		private readonly ILogger<EmptyingRecycleBinNotificationHandler> _logger;
 		private readonly IScopeProvider _scopeProvider;
 
-		public EmptyingRecycleBinNotificationHandler(IBackOfficeSecurityAccessor backOfficeSecurityAccessor, ILogger<DeletingNotificationHandler> logger, IScopeProvider scopeProvider) : base(backOfficeSecurityAccessor)
+		public EmptyingRecycleBinNotificationHandler(IBackOfficeSecurityAccessor backOfficeSecurityAccessor, ILogger<EmptyingRecycleBinNotificationHandler> logger, IScopeProvider scopeProvider) : base(backOfficeSecurityAccessor)
 		{
 			_logger = logger;
 			_scopeProvider = scopeProvider;
