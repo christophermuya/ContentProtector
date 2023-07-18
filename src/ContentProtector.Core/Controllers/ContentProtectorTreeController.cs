@@ -36,7 +36,7 @@ namespace ContentProtector.Core.Controllers
 
 			var root = rootResult.Value;
 
-			root.RoutePath = $"{Umbraco.Cms.Core.Constants.Applications.Settings}/{ContentProtectorSettings.Alias}/{"content"}";
+			root.RoutePath = $"{Umbraco.Cms.Core.Constants.Applications.Settings}/{ContentProtectorSettings.Alias}/content";
 			root.Icon = "icon-lock";
 			root.HasChildren = true;
 			root.MenuUrl = null;
@@ -53,34 +53,42 @@ namespace ContentProtector.Core.Controllers
 			
 			var nodes = new TreeNodeCollection();
 
-			var save = CreateTreeNode("1", "-1", queryStrings, "Save", "icon-disk-image", false);
+			var save = CreateTreeNode(((int)ActionModelId.Save).ToString(), "-1", queryStrings, "Save", "icon-disk-image", false);
 			save.MenuUrl = null;
 
-			var publish = CreateTreeNode("6", "-1", queryStrings, "Publish", "icon-navigation-top", false);
+			var move = CreateTreeNode(((int)ActionModelId.Move).ToString(), "-1", queryStrings, "Move", "icon-enter", false);
+			move.MenuUrl = null;
+
+			var publish = CreateTreeNode(((int)ActionModelId.Publish).ToString(), "-1", queryStrings, "Publish", "icon-navigation-top", false);
 			publish.MenuUrl = null;
 
-			var unpublished = CreateTreeNode("7", "-1", queryStrings, "Unpublish", "icon-navigation-bottom", false);
-			unpublished.MenuUrl = null;
+			var unpublish = CreateTreeNode(((int)ActionModelId.Unpublish).ToString(), "-1", queryStrings, "Unpublish", "icon-navigation-bottom", false);
+			unpublish.MenuUrl = null;
 
-			var trash = CreateTreeNode("3", "-1", queryStrings, "Trash", "icon-trash", false);
+			var trash = CreateTreeNode(((int)ActionModelId.Trash).ToString(), "-1", queryStrings, "Trash", "icon-trash", false);
 			trash.MenuUrl = null;
 
-			var delete = CreateTreeNode("4", "-1", queryStrings, "Delete", "icon-trash-alt", false);
+			var delete = CreateTreeNode(((int)ActionModelId.Delete).ToString(), "-1", queryStrings, "Delete", "icon-trash-alt", false);
 			delete.MenuUrl = null;
 
-			var rollback = CreateTreeNode("8", "-1", queryStrings, "RollBack", "icon-alarm-clock", false);
+			var copy = CreateTreeNode(((int)ActionModelId.Copy).ToString(), "-1", queryStrings, "Copy", "icon-documents", false);
+			copy.MenuUrl = null;
+
+			var rollback = CreateTreeNode(((int)ActionModelId.Rollback).ToString(), "-1", queryStrings, "RollBack", "icon-alarm-clock", false);
 			rollback.MenuUrl = null;
 
-			var rename = CreateTreeNode("9", "-1", queryStrings, "Rename", "icon-edit", false);
+			var rename = CreateTreeNode(((int)ActionModelId.Rename).ToString(), "-1", queryStrings, "Rename", "icon-edit", false);
 			rollback.MenuUrl = null;
 
 			nodes.Add(save);
 			nodes.Add(publish);
-			nodes.Add(unpublished);
-			nodes.Add(trash);
-			nodes.Add(delete);
-			nodes.Add(rollback);
+			nodes.Add(unpublish);
 			nodes.Add(rename);
+			nodes.Add(move);
+			nodes.Add(copy);
+			nodes.Add(rollback);
+			nodes.Add(delete);
+			nodes.Add(trash);
 
 			return nodes;
 		}

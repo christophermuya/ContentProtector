@@ -31,8 +31,7 @@ namespace ContentProtector.Core.Controllers
 					.SqlContext
 					.Sql()
 					.Select("*")
-					.From<ActionModel>()
-					.Where<ActionModel>(x => x.Id != (int)ActionModelId.Move && x.Id != (int)ActionModelId.Copy);
+					.From<ActionModel>();
 
 				var value = scope.Database.Fetch<ActionModel>(sql);
 
@@ -97,6 +96,7 @@ namespace ContentProtector.Core.Controllers
 			{
 				_logger.LogError(ex, "Failed to save Content Protector settings for the" + model.Name + " action");
 			}
+
 			return model;
 		}
 	}

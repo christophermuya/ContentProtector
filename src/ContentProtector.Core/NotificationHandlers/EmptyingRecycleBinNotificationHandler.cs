@@ -22,7 +22,7 @@ namespace ContentProtector.Core.NotificationHandlers
 
 		public void Handle(ContentEmptyingRecycleBinNotification notification)
 		{
-			ActionModel? delete = null;
+			ActionModel? tash = null;
 			var currentUserId = GetCurrentUserId();
 
 			try
@@ -36,7 +36,7 @@ namespace ContentProtector.Core.NotificationHandlers
 					.From<ActionModel>()
 					.Where<ActionModel>(x => x.Id == (int)ActionModelId.Trash);
 
-				delete = scope
+				tash = scope
 					.Database
 					.Fetch<ActionModel>(sql)
 					.FirstOrDefault();
@@ -55,17 +55,17 @@ namespace ContentProtector.Core.NotificationHandlers
 
 			foreach (var node in notification.DeletedEntities)
 			{
-				if (delete == null)
+				if (tash == null)
 				{
 					continue;
 				}
 
-				if (!delete.Nodes.Split(',').Contains(node.Id.ToString()) && !delete.DisableAction)
+				if (!tash.Nodes.Split(',').Contains(node.Id.ToString()) && !tash.DisableAction)
 				{
 					continue;
 				}
 
-				if (delete.UserExceptions.Split(',').Contains(currentUserId.ToString()))
+				if (tash.UserExceptions.Split(',').Contains(currentUserId.ToString()))
 				{
 					continue;
 				}
