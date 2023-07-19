@@ -45,7 +45,7 @@ namespace ContentProtector.Core.NotificationHandlers
 			{
 				_logger.LogError(ex, "Failed to get Content Protector setting for delete action");
 				notification.Cancel = true;
-				notification.Messages.Add(new EventMessage("Contact website admin", "Failed to get Content Protector setting for delete action", EventMessageType.Error));
+				notification.Messages.Add(new EventMessage("Contact website admin", "Failed to get Content Protector setting for trash action", EventMessageType.Error));
 			}
 
 			if (notification.DeletedEntities == null)
@@ -71,7 +71,7 @@ namespace ContentProtector.Core.NotificationHandlers
 				}
 
 				notification.Cancel = true;
-				notification.Messages.Add(new EventMessage("Action rejected. Contact website admin", $"You cannot delete '{node.Name}'", EventMessageType.Error));
+				notification.Messages.Add(new EventMessage("Action rejected. Contact website admin", $"You cannot trash '{node.Name}'", EventMessageType.Error));
 			}
 		}
 	}

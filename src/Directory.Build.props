@@ -1,0 +1,12 @@
+<Project>
+	<PropertyGroup>
+	<Title>ContentProtector</Title>
+	<Authors>Christopher Muya</Authors>
+	<Description>An Umbraco 10+ package that prevents users from performing certain actions on content nodes selected in the backoffice. Actions include saving, publishing, unpublishing, renaming, moving, copying, rolling back, deleting or trashing.</Description>
+	<RepositoryType>git</RepositoryType>
+	<PackageTags>Umbraco,Content Protector</PackageTags>
+	<RepositoryUrl>https://github.com/christophermuya/ContentProtector</RepositoryUrl>
+	<PackageProjectUrl>https://github.com/christophermuya/ContentProtector</PackageProjectUrl>
+	<TargetFramework>net6.0</TargetFramework>
+	</PropertyGroup>
+</Project>
