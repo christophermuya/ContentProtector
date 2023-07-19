@@ -84,6 +84,12 @@ namespace ContentProtector.Core.NotificationHandlers
 
 				var content = _contentService.GetById(node.Id);
 
+				if (content == null)
+				{
+					notification.CancelOperation(new EventMessage("Action rejected. Contact website admin", $"Failed to get content using Id '{node.Id}'", EventMessageType.Error));
+					continue;
+				}
+
 				if (!string.Equals(node.Name, content.Name, StringComparison.CurrentCultureIgnoreCase))
 				{
 					notification.CancelOperation(new EventMessage("Action rejected. Contact website admin", $"You cannot rename '{content.Name}'", EventMessageType.Error));

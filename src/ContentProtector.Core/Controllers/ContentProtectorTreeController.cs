@@ -34,7 +34,7 @@ namespace ContentProtector.Core.Controllers
 				return rootResult;
 			}
 
-			var root = rootResult.Value;
+			var root = rootResult.Value ?? throw new Exception("Root is null");
 
 			root.RoutePath = $"{Umbraco.Cms.Core.Constants.Applications.Settings}/{ContentProtectorSettings.Alias}/content";
 			root.Icon = "icon-lock";
