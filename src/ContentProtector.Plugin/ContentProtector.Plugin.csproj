@@ -6,6 +6,7 @@
 		<Nullable>enable</Nullable>
 		<Version>2.0.0</Version>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageId>ContentProtector</PackageId>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -19,6 +20,10 @@
 			<PackagePath>content\App_Plugins</PackagePath>
 			<Visible>false</Visible>
 		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\ContentProtector.Core\ContentProtector.Core.csproj" />
 	</ItemGroup>
 
 </Project>
