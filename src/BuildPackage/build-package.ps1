@@ -1,5 +1,4 @@
 param (
-
     [Parameter(Mandatory)]
     [string]
     $version = (Read-Host -Prompt "Version to build e.g. 1.0.1"),
@@ -47,10 +46,6 @@ if ([string]::IsNullOrWhiteSpace($localNugetFeedPathUserInput))
 {
     $localNugetFeedPath = 'C:\Temp\packages'
 }
-
-Write-Host 'env =' $env
-Write-Host 'pushToLocalNugetFeed =' $pushToLocalNugetFeed
-Write-Host 'localNugetFeedPath =' $localNugetFeedPath
 
 if ($version.IndexOf('-') -ne -1) {
     Write-Host "Version shouldn't contain a - (remember version and suffix are seperate)"

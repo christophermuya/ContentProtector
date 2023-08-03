@@ -20,7 +20,8 @@ Due to the core setup, the 'copy', 'move' and 'trash' actions won't necessarily 
 
 After forking and cloning the repo, open the Visual Studio solution and run the `ContentProtector.Web` project and navigate to the backoffice (a SQLite database is provided with a base set up).
 
-Username: admin
+Username: admin  
+(Yes the username should be an email address... but we didn't want a dummy email address getting spammed with password reset requests!)  
 Password: testtest1234
 
 ### Plugin Build
