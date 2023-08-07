@@ -1,0 +1,36 @@
+<div ng-controller="cp.protection.controller as vm">
+	<div class="umb-box">
+		<div class="umb-box-header cp-action-header">
+			<div class="umb-box-header-title cp-title">Status</div>
+		</div>
+		<umb-box>
+			<div class="cp-panel-header">
+				<div class="umb-panel-group__details-check-name">Current protection</div>
+				<div class="umb-panel-group__details-check-description">View the details of each action</div>
+			</div>
+			<div class="cp-panel" ng-repeat="item in vm.model">
+				<div class="cp-panel-group">
+					<div class="cp-action">
+						<a ng-href="#/settings/contentProtector/edit/{{item.Id}}">
+							{{item.Name.charAt(0).toUpperCase() + item.Name.slice(1)}}
+						</a>
+					</div>
+					<div class="cp-status" title="Protect selection" ng-show="item.Nodes.length > 0">
+						<i class="icon-list color-green"></i>
+					</div>
+					<div class="cp-status" title="User Exception" ng-show="item.UserExceptions.length > 0">
+						<i class="icon-user color-orange"></i>
+					</div>
+					<div class="cp-status" title="Protect all node" ng-show="item.DisableAction">
+						<i class="icon-custom-pause-circle-fill color-red"></i>
+					</div>
+				</div>
+				<div class="cp-userDate">
+					{{item.LastEditedBy}}
+					<br />
+					{{item.LastEdited | date : "MMMM d, y h:mm a"}}
+				</div>
+			</div>
+		</umb-box>
+	</div>
+</div>

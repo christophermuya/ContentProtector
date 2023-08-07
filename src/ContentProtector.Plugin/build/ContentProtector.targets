@@ -1,0 +1,28 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<PropertyGroup>
+		<ContentProtectorPluginFolder>App_Plugins\ContentProtector</ContentProtectorPluginFolder>
+		<ContentProtectorPluginFilesPath>$(MSBuildThisFileDirectory)..\content\$(ContentProtectorPluginFolder)</ContentProtectorPluginFilesPath>
+		<ContentProtectorContentFilesPath>$(ContentProtectorPluginFilesPath)\**\*.*</ContentProtectorContentFilesPath>
+	</PropertyGroup>
+
+	<Target Name="CopyContentProtectorAssets" BeforeTargets="Build">
+		<ItemGroup>
+			<ContentProtectorContentFiles Include="$(ContentProtectorContentFilesPath)" />
+		</ItemGroup>
+		<Message Text="Copying ContentProtector files: $(ContentProtectorContentFilesPath) - #@(ContentProtectorContentFiles->Count()) files" Importance="high" />
+		<Copy
+			SourceFiles="@(ContentProtectorContentFiles)"
+			DestinationFiles="@(ContentProtectorContentFiles->'$(MSBuildProjectDirectory)\App_Plugins\ContentProtector\%(RecursiveDir)%(Filename)%(Extension)')"
+			SkipUnchangedFiles="true" />
+	</Target>
+
+	<Target Name="ClearContentProtectorAssets" BeforeTargets="Clean">
+		<ItemGroup>
+			<ContentProtectorDir Include="$(MSBuildProjectDirectory)\App_Plugins\ContentProtector\" />
+		</ItemGroup>
+		<Message Text="Clear old ContentProtector data" Importance="high" />
+		<RemoveDir Directories="@(ContentProtectorDir)" />
+	</Target>
+
+</Project>
